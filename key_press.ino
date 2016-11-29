@@ -1,5 +1,7 @@
-int led1=13; //Inputs for the 2 motors
-int led2=12;
+//The Car uses two motors for the rear left and right whhels and a Swiveling Front Caster wheel. 
+
+int led1=13; //Inputs for the 2 motors.Each motor has 2 inputs. 
+int led2=12; // Depending on which of them is and which is low the motor rotates in one direction and vice versa.
 int led3=8;
 int led4=9;
 int horn_pin=4 ;
@@ -41,13 +43,13 @@ void horn(){
   digitalWrite(horn_pin,LOW);
 }
 void turn_right(){
-  digitalWrite(led1,LOW);
+  digitalWrite(led1,LOW);     // To turn right, the left wheel should move forward while right should be stopped.
   digitalWrite(led2,LOW);
   digitalWrite(led3,HIGH);
   digitalWrite(led4,LOW);
   
 }
-void turn_left(){
+void turn_left(){            // To turn left, the right wheel should move forward while the left one shoyuld be stopped.
   digitalWrite(led1,HIGH);
   digitalWrite(led2,LOW);
   digitalWrite(led3,LOW);
@@ -59,8 +61,8 @@ void turn_left(){
   
 void loop(){
 
-  while(Serial.available()==0);
-  char comm= (char) Serial.read();
+  while(Serial.available()==0);             
+  char comm= (char) Serial.read();        //Reads Input coming from laptop over bluetooth.
   if(comm=='w'){
     move_forward();
   }
